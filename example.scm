@@ -54,25 +54,22 @@
 (define (string-includes? str substr) (not (not (string-contains str substr))))
 
 (define (string-upper str) 
-    (list->string 
-        (map (lambda (c) (char-upcase c))
-             (string->list (string-copy str)))))
+    (list->string (map (lambda (c) (char-upcase c))
+                  (string->list (string-copy str)))))
 
 (define (string-lower str) 
-    (list->string 
-        (map (lambda (c) (char-downcase c))
-             (string->list (string-copy str)))))
+    (list->string (map (lambda (c) (char-downcase c))
+                  (string->list (string-copy str)))))
 
 (define (string-trim-left str) 
     (let ((found-nonwhite #f))
-        (list->string 
-            (filter (lambda (c) 
-                        (if (equal? found-nonwhite #t)
-                            c
-                            (if (not (equal? c #\space)) 
-                                (begin (set! found-nonwhite #t) c) 
-                                (not (equal? c #\space)))))
-                    (string->list (string-copy str))))))
+        (list->string (filter (lambda (c) 
+                          (if (equal? found-nonwhite #t)
+                              c
+                              (if (not (equal? c #\space)) 
+                                  (begin (set! found-nonwhite #t) c) 
+                                  (not (equal? c #\space)))))
+                          (string->list (string-copy str))))))
 
 (define (string-trim-right str) (string-reverse (string-trim-left (string-reverse str))))
 
@@ -84,9 +81,5 @@
 
 (define (string-truncate str maxlen replacement)
     (if (> (string-length str) maxlen)
-        (string-append 
-            (list->string (take maxlen (string->list (string-copy str)))) 
-            replacement)
+        (string-append (list->string (take maxlen (string->list (string-copy str)))) replacement)
         str))
-
-
