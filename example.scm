@@ -1,3 +1,16 @@
+; aliases
+; for fun
+; (define-syntax def (identifier-syntax define))
+
+; number?, pair?, string?, and list? already exist -- why not boolean?
+(define (boolean? x) (or (equal? #f x) (equal? #t x)))
+
+; boolean cast, similar to js, python, etc.
+(define (boolean x)
+    (if (number? x)
+        (not (equal? x 0))
+        #t))
+
 ; take
 (define (take n lst)
     (if (equal? 0 n)  
@@ -17,7 +30,7 @@
 (define (tail lst) (reverse (pop (reverse lst))))
 
 ; first/last
-(define (first lst) (list-ref lst 0))
+(define-syntax first (identifier-syntax head))
 (define (last lst) (list-ref (reverse lst) 0))
 
 ; remove is the opposite of filter.
@@ -75,3 +88,5 @@
             (list->string (take maxlen (string->list (string-copy str)))) 
             replacement)
         str))
+
+
