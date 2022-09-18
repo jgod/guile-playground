@@ -26,8 +26,8 @@
 (define (pop lst) (reverse (cdr (reverse lst))))
 
 ; head/tail
-(define (head lst) (list-ref lst 0))
-(define (tail lst) (reverse (pop (reverse lst))))
+(define (head lst) (car lst))
+(define (tail lst) (cdr lst))
 
 ; first/last
 (define-syntax first (identifier-syntax head))
